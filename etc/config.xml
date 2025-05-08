@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!--
+  ~ All rights reserved.
+  ~ See COPYING.txt for license details.
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <ginger_general>
+                <version>1.0.0</version>
+                <active>0</active>
+                <enabled>0</enabled>
+                <type>test</type>
+                <payment_images>1</payment_images>
+                <debug>1</debug>
+                <apikey backend_model="Magento\Config\Model\Config\Backend\Encrypted"></apikey>
+                <model>GingerPay\Payment\Model\Methods\General</model>
+                <observer>1</observer>
+            </ginger_general>
+            <ginger_methods_creditcard>
+                <active>1</active>
+                <model>GingerPay\Payment\Model\Methods\Creditcard</model>
+                <title>Credit/debit card</title>
+                <description>Your order %id% at %name%</description>
+                <order_status_pending>pending_payment</order_status_pending>
+                <order_status_authorized>pending_payment</order_status_authorized>
+                <generate_invoice>1</generate_invoice>
+                <order_status_processing>processing</order_status_processing>
+                <invoice_notify>1</invoice_notify>
+                <payment_action>order</payment_action>
+                <allowspecific>0</allowspecific>
+                <instructions/>
+            </ginger_methods_creditcard>
+            <ginger_methods_applepay>
+                <active>1</active>
+                <model>GingerPay\Payment\Model\Methods\ApplePay</model>
+                <title>Apple Pay</title>
+                <description>Your order %id% at %name%</description>
+                <order_status_pending>pending_payment</order_status_pending>
+                <generate_invoice>1</generate_invoice>
+                <order_status_processing>processing</order_status_processing>
+                <invoice_notify>1</invoice_notify>
+                <payment_action>order</payment_action>
+                <allowspecific>0</allowspecific>
+                <instructions/>
+            </ginger_methods_applepay>
+            <ginger_methods_googlepay>
+                <active>1</active>
+                <model>GingerPay\Payment\Model\Methods\Googlepay</model>
+                <title>Google Pay</title>
+                <description>Your order %id% at %name%</description>
+                <order_status_pending>pending_payment</order_status_pending>
+                <generate_invoice>1</generate_invoice>
+                <order_status_processing>processing</order_status_processing>
+                <invoice_notify>1</invoice_notify>
+                <payment_action>order</payment_action>
+                <allowspecific>0</allowspecific>
+                <instructions/>
+            </ginger_methods_googlepay>
+            <ginger_methods_mobilepay>
+                <active>1</active>
+                <model>GingerPay\Payment\Model\Methods\MobilePay</model>
+                <title>MobilePay</title>
+                <description>Your order %id% at %name%</description>
+                <order_status_pending>pending_payment</order_status_pending>
+                <generate_invoice>1</generate_invoice>
+                <order_status_processing>processing</order_status_processing>
+                <invoice_notify>1</invoice_notify>
+                <payment_action>order</payment_action>
+                <allowspecific>0</allowspecific>
+                <instructions/>
+            </ginger_methods_mobilepay>
+            <ginger_methods_swish>
+                <active>1</active>
+                <model>GingerPay\Payment\Model\Methods\Swish</model>
+                <title>Swish</title>
+                <description>Your order %id% at %name%</description>
+                <order_status_pending>pending_payment</order_status_pending>
+                <generate_invoice>1</generate_invoice>
+                <order_status_processing>processing</order_status_processing>
+                <invoice_notify>1</invoice_notify>
+                <payment_action>order</payment_action>
+                <allowspecific>0</allowspecific>
+                <instructions/>
+            </ginger_methods_swish>
+        </payment>
+    </default>
+</config>

@@ -1,0 +1,6 @@
+var config = {
+    config: {
+        mixins: {
+        }
+    }
+}
