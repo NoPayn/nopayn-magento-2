@@ -76,7 +76,7 @@ The ideal online payment page for your webshop:
    ```bash
    php bin/magento setup:static-content:deploy
    ```
-5. After the installation: Go to your Magento® admin portal and open 'Stores' > 'Configuration' > 'Payment Methods' > 'GingerPay Payments'.
+5. After the installation: Go to your Magento® admin portal and open 'Stores' > 'Configuration' > 'Payment Methods' > 'NoPayn Payments'.
 
 ## Configuration
 

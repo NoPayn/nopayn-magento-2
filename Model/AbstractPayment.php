@@ -102,12 +102,22 @@ class AbstractPayment extends PaymentLibrary
                 throw new \Exception('No transactions found in Ginger order: ' . $orderId);
             }
 
+            if (!empty($gingerOrder['flags']) && in_array('has-captures', $gingerOrder['flags'])) {
+                $this->configRepository->addTolog('debug', 'Order already captured: ' . $orderId);
+                throw new \Exception('Order has already been captured: ' . $orderId);
+            }
+
             $transaction = current($gingerOrder['transactions']);
             if (empty($transaction['id'])) {
                 throw new \Exception('Transaction ID not found in Ginger order: ' . $orderId);
             }
 
             $transactionId = $transaction['id'];
+
+            if (empty($transaction['is_capturable']) || $transaction['is_capturable'] !== true) {
+                $this->configRepository->addTolog('debug', 'Transaction is not captureable for order: ' . $orderId);
+                throw new \Exception('Transaction is not capturable for order: ' . $orderId);
+            }
 
             $this->configRepository->addTolog('debug', 'Capturing transaction: ' . $transactionId . ' for order: ' . $orderId);
             $client->captureOrderTransaction($orderId, $transactionId);
@@ -178,6 +188,11 @@ class AbstractPayment extends PaymentLibrary
                 throw new \Exception('No transactions found in Ginger order: ' . $orderId);
             }
 
+            if (!empty($gingerOrder['flags']) &&
+                (in_array('has-captures', $gingerOrder['flags']) || in_array('has-voids', $gingerOrder['flags']))) {
+                $this->configRepository->addTolog('debug', 'Order already captured or voided: ' . $orderId);
+                throw new \Exception('Order has already been captured or voided: ' . $orderId);
+            }
             $transaction = current($gingerOrder['transactions']);
             if (empty($transaction['id'])) {
                 throw new \Exception('Transaction ID not found in Ginger order: ' . $orderId);
@@ -192,7 +207,7 @@ class AbstractPayment extends PaymentLibrary
                 'description' => "Void for Magento shop"
             ];
 
-            $client->send('POST', sprintf('/orders/%s/transactions/%s/voids/amount/', $orderId, $transactionId),$data);
+            $client->send('POST', sprintf('/orders/%s/transactions/%s/voids/amount/', $orderId, $transactionId), $data);
 
             $this->configRepository->addTolog(
                 'success',
@@ -220,9 +235,9 @@ class AbstractPayment extends PaymentLibrary
 
 
     /**
-
-
-    /**
+     *
+     *
+     * /**
      * @param string $method
      * @param InfoInterface $payment
      * @param float $amount
