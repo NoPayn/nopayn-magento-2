@@ -63,19 +63,44 @@ The ideal online payment page for your webshop:
 
 ## Installation
 
+### Installation via Composer
+Magento® 2 uses the Composer to manage the module package and the library. Composer is a dependency manager for PHP. Composer declares the libraries your project depends on and it will manage (install/update) them for you.
+
+Check if your server has composer installed by running the following command:
+```
+composer -V
+```
+If your server doesn’t have composer installed, you can easily install it by using this manual: https://getcomposer.org/doc/00-intro.md
+
+Step-by-step to install the Magento® 2 extension through Composer:
+
+1. Connect to your server running Magento® 2 using SSH or another method (make sure you have access to the command line).
+2. Locate your Magento® 2 project root.
+3. Install the Magento® 2 extension through composer and wait till it's completed:
+```
+composer require nopayn/nopayn-magento-2
+```
+4. After that run the Magento® upgrade and clean the caches:
+```
+php bin/magento setup:upgrade
+php bin/magento module:enable GingerPay_Payment
+```
+5. Continue installation from step 4 in "Manual Installation"
+
+
 ### Manual Installation
 
 1. Go to `app/code` folder 
 2. Unzip `nopayn.zip` attached to release 
 3. After that run the Magento® upgrade and clean the caches:
-   ```bash
-   php bin/magento setup:upgrade
-   php bin/magento cache:clean
-   ```
+```
+php bin/magento setup:upgrade
+php bin/magento cache:clean
+```
 4. If Magento® is running in production mode you also need to redeploy the static content:
-   ```bash
-   php bin/magento setup:static-content:deploy
-   ```
+```
+php bin/magento setup:static-content:deploy
+```
 5. After the installation: Go to your Magento® admin portal and open 'Stores' > 'Configuration' > 'Payment Methods' > 'NoPayn Payments'.
 
 ## Configuration
