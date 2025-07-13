@@ -17,6 +17,7 @@ interface RepositoryInterface
 {
     const XML_PATH_MODULE_ACTIVE = 'payment/ginger_general/enabled';
     const XML_PATH_APIKEY = 'payment/ginger_general/apikey';
+    const XML_PATH_ORDER_EXPIRATION_PERIOD = 'payment/ginger_general/order_expiration_period';
     const XML_PATH_VERSION = 'payment/ginger_general/version';
     const XML_PATH_DEBUG = 'payment/ginger_general/debug';
     const XML_PATH_OBSERVER = 'payment/ginger_general/observer';
@@ -45,6 +46,13 @@ interface RepositoryInterface
      * @return string|null
      */
     public function getApiKey(int $storeId);
+
+    /**
+     * Get the order expiration period in minutes
+     *
+     * @return string|null
+     */
+    public function getExpirationPeriod(int $storeId);
 
     /**
      * @return bool

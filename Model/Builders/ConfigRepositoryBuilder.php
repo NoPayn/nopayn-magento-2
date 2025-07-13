@@ -370,4 +370,8 @@ class ConfigRepositoryBuilder extends ApiBuilder implements ConfigRepositoryInte
         return (bool)$this->getStoreConfig($path, $storeId);
     }
 
+    public function getExpirationPeriod(int $storeId)
+    {
+        return $this->getStoreConfig(self::XML_PATH_ORDER_EXPIRATION_PERIOD, $storeId);
+    }
 }

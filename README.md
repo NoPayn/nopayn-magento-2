@@ -40,9 +40,7 @@ The ideal online payment page for your webshop:
 
 ## Version
 
-| Version | Release Date |
-|---------|-------------|
-| 1.0.0 | Initial Release |
+Latest version: **1.0.1**
 
 ## Requirements
 

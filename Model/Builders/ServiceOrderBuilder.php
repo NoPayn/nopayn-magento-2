@@ -71,8 +71,7 @@ class ServiceOrderBuilder
      */
     public function cancel(OrderInterface $order): bool
     {
-        if ($order->getId() && $order->getState() != Order::STATE_CANCELED)
-        {
+        if ($order->getId() && $order->getState() != Order::STATE_CANCELED) {
             $comment = __("The order was canceled");
             $this->configRepository->addTolog('info', $order->getIncrementId() . ' ' . $comment);
             $order->registerCancellation($comment)->save();
@@ -199,6 +198,7 @@ class ServiceOrderBuilder
         ) {
             $transaction['capture_mode'] = 'manual';
         }
+        $transaction['expiration_period'] = $this->getExpirationPeriod();
 
         return [
             array_filter($transaction)
@@ -223,7 +223,8 @@ class ServiceOrderBuilder
             'transactions' => $paymentDetails,
             'client' => $this->getClientLines(),
             'order_lines' => $orderLines->get($order),
-            'customer' => $customerData
+            'customer' => $customerData,
+            'expiration_period' => $this->getExpirationPeriod()
         ]);
         return $orderData;
     }
@@ -341,7 +342,7 @@ class ServiceOrderBuilder
      * @throws InputException
      * @throws NoSuchEntityException
      */
-    public function updateStatus(OrderInterface $order, string $status) : OrderInterface
+    public function updateStatus(OrderInterface $order, string $status): OrderInterface
     {
         if ($order->getStatus() !== $status) {
             $msg = __('Status updated from %1 to %2', $order->getStatus(), $status);
@@ -350,5 +351,16 @@ class ServiceOrderBuilder
         }
 
         return $order;
+    }
+
+    public function getExpirationPeriod(): string
+    {
+        $storeId = $this->configRepository->getCurrentStoreId();
+
+        $minutes = $this->configRepository->getExpirationPeriod($storeId);
+        if (is_numeric($minutes) && (int)$minutes > 0) {
+            return 'PT' . (int)$minutes . 'M';
+        }
+        return 'PT5M';
     }
 }
