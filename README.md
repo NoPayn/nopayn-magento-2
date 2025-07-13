@@ -5,7 +5,7 @@
 # Nopayn Payment plugin for Magento 2
 
 <p align="center">
-  <a href="#"><img src="https://img.shields.io/badge/version-1.0.0-blue.svg" alt="Version"></a>
+  <a href="#"><img src="https://img.shields.io/badge/version-1.0.1-blue.svg" alt="Version"></a>
   <a href="#"><img src="https://img.shields.io/badge/Magento-2.4.6+-brightgreen.svg" alt="Magento 2.4.6+"></a>
   <a href="#"><img src="https://img.shields.io/badge/PHP-8.2+-orange.svg" alt="PHP 8.2+"></a>
   <a href="#"><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License"></a>
