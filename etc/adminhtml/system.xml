@@ -16,7 +16,7 @@
 					<label>General</label>
 					<field id="version" translate="label" type="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
 						<label>Version</label>
-                        <config_path>payment/ginger_general/version</config_path>
+						<config_path>payment/ginger_general/version</config_path>
 					</field>
 					<field id="enabled" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
 						<label>Enabled</label>
@@ -46,6 +46,13 @@
 					<field id="apkikey_result" translate="label" type="text" sortOrder="15" showInDefault="1"
 						   showInWebsite="1" showInStore="1">
 						<frontend_model>GingerPay\Payment\Block\Adminhtml\System\Config\Form\Apikey\Result</frontend_model>
+					</field>
+					<field id="order_expiration_period" translate="label comment" type="text" sortOrder="16"
+						   showInDefault="1" showInWebsite="1" showInStore="1">
+						<label>Expiration period (minutes)</label>
+						<comment>Set the number of minutes after which the order and transaction will automatically expire. By default order and transaction will be expired after 5 minutes.</comment>
+						<frontend_model>GingerPay\Payment\Block\Adminhtml\System\Config\Form\NumberInput</frontend_model>
+						<config_path>payment/ginger_general/order_expiration_period</config_path>
 					</field>
 					<field id="heading_debug" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="0" showInStore="0">
 						<label>Debug</label>
