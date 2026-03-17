@@ -352,7 +352,16 @@ class ConfigRepositoryBuilder extends ApiBuilder implements ConfigRepositoryInte
             return false;
         }
 
-        $logo = sprintf('%s::images/%s.svg', self::MODULE_CODE, $this->getShortMethodCode($code));
+        $shortCode = $this->getShortMethodCode($code);
+        $logoFile = sprintf('%s.svg', $shortCode);
+
+        if ($shortCode === 'vippsmobilepay') {
+            $logoFile = file_exists(__DIR__ . '/../../view/frontend/web/images/vipps.png')
+                ? 'vipps.png'
+                : 'vippsmobilepay.png';
+        }
+
+        $logo = sprintf('%s::images/%s', self::MODULE_CODE, $logoFile);
         return $this->assetRepository->getUrl($logo);
     }
 

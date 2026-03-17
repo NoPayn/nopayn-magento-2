@@ -70,12 +70,20 @@ class SalesOrderInvoiceSaveAfter implements ObserverInterface
             $this->configRepository->addTolog('debug', 'Skipping capture for refund operation on order: ' . $order->getIncrementId());
         }
 
-        // Only capture credit card payments with manual capture enabled and not during refund operations
-        if ($method === Creditcard::METHOD_CODE && $isManualCaptureEnabled && !$isRefund) {
+        // Only capture supported manual-capture payment methods and not during refund operations
+        if ($isManualCaptureEnabled && !$isRefund) {
             try {
+                $isCaptured = false;
                 $this->configRepository->addTolog('debug', 'Attempting to capture payment for order: ' . $order->getIncrementId());
-                $this->creditcardModel->captureOrder($order);
-                $this->configRepository->addTolog('debug', 'Payment capture completed successfully');
+                if ($method === Creditcard::METHOD_CODE) {
+                    $this->creditcardModel->captureOrder($order);
+                    $isCaptured = true;
+                } else {
+                    $this->configRepository->addTolog('debug', 'Skipping capture for unsupported method: ' . $method);
+                }
+                if ($isCaptured) {
+                    $this->configRepository->addTolog('debug', 'Payment capture completed successfully');
+                }
             } catch (\Exception $e) {
                 $this->configRepository->addTolog('error', 'Error capturing payment: ' . $e->getMessage());
             }

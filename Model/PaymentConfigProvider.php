@@ -28,6 +28,7 @@ class PaymentConfigProvider extends ModelBuilderRedefiner
         Methods\ApplePay::METHOD_CODE,
         Methods\Googlepay::METHOD_CODE,
         Methods\MobilePay::METHOD_CODE,
+        Methods\VippsMobilePay::METHOD_CODE,
         Methods\Swish::METHOD_CODE,
     ];
 

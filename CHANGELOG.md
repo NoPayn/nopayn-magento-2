@@ -1,7 +1,11 @@
-NoPayn Payments 1.0.2
+NoPayn Payments 1.1.0
 ------------------------------
 
 # Changelog #
+
+## Changes in version 1.1.0
+
+* Added Vipps/MobilePay as a supported payment method
 
 ## Changes in version 1.0.2
 

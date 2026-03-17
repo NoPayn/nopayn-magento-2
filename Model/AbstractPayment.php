@@ -75,7 +75,13 @@ class AbstractPayment extends PaymentLibrary
     protected function capturing(string $method, OrderInterface $order): self
     {
         $storeId = (int)$order->getStoreId();
-        $this->paymentName = 'Creditcard';
+        switch ($method) {
+            case Creditcard::METHOD_CODE:
+                $this->paymentName = 'Creditcard';
+                break;
+            default:
+                $this->paymentName = 'Unknown';
+        }
 
 
         $client = $this->loadGingerClient($storeId);
@@ -162,7 +168,6 @@ class AbstractPayment extends PaymentLibrary
             case Creditcard::METHOD_CODE:
                 $this->paymentName = 'Creditcard';
                 break;
-
             default:
                 $this->paymentName = 'Unknown';
         }

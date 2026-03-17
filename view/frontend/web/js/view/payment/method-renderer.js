@@ -22,6 +22,7 @@ define(
             {type: 'ginger_methods_applepay', component: defaultComponent},
             {type: 'ginger_methods_googlepay', component: defaultComponent},
             {type: 'ginger_methods_mobilepay', component: defaultComponent},
+            {type: 'ginger_methods_vippsmobilepay', component: defaultComponent},
             {type: 'ginger_methods_swish', component: defaultComponent}
         ];
         $.each(methods, function (k, method) {

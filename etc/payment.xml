@@ -18,6 +18,9 @@
         <method name="ginger_methods_mobilepay">
             <allow_multiple_address>0</allow_multiple_address>
         </method>
+        <method name="ginger_methods_vippsmobilepay">
+            <allow_multiple_address>0</allow_multiple_address>
+        </method>
         <method name="ginger_methods_swish">
             <allow_multiple_address>0</allow_multiple_address>
         </method>

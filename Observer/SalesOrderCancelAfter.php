@@ -58,12 +58,20 @@ class SalesOrderCancelAfter implements ObserverInterface
             $transactionId ?: 'Not available'
         ));
 
-        // Only void credit card payments with manual capture enabled
-        if ($method === Creditcard::METHOD_CODE && $isManualCaptureEnabled) {
+        // Only void supported manual-capture payment methods
+        if ($isManualCaptureEnabled) {
             try {
+                $isVoided = false;
                 $this->configRepository->addTolog('debug', 'Attempting to void payment for order: ' . $order->getIncrementId());
-                $this->creditcardModel->voidOrder($order);
-                $this->configRepository->addTolog('debug', 'Payment void completed successfully');
+                if ($method === Creditcard::METHOD_CODE) {
+                    $this->creditcardModel->voidOrder($order);
+                    $isVoided = true;
+                } else {
+                    $this->configRepository->addTolog('debug', 'Skipping void for unsupported method: ' . $method);
+                }
+                if ($isVoided) {
+                    $this->configRepository->addTolog('debug', 'Payment void completed successfully');
+                }
             } catch (\Exception $e) {
                 $this->configRepository->addTolog('error', 'Error voiding payment: ' . $e->getMessage());
             }

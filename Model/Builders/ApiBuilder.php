@@ -2,9 +2,35 @@
 
 namespace GingerPay\Payment\Model\Builders;
 
-if (file_exists(__DIR__ ."/../../Library/vendor/autoload.php"))
-{
-    require_once __DIR__ ."/../../Library/vendor/autoload.php";
+if (!class_exists('Ginger\\Ginger') && !defined('GINGERPAY_GINGER_SDK_AUTOLOADER')) {
+    define('GINGERPAY_GINGER_SDK_AUTOLOADER', true);
+
+    $sdkSourcePaths = [];
+    if (defined('BP')) {
+        $sdkSourcePaths[] = BP . '/vendor/gingerpayments/ginger-php/src';
+    }
+    // Archive installation: dependency is bundled in module vendor/.
+    $sdkSourcePaths[] = __DIR__ . '/../../vendor/gingerpayments/ginger-php/src';
+
+    spl_autoload_register(
+        static function (string $class) use ($sdkSourcePaths): void {
+            $prefix = 'Ginger\\';
+            if (strncmp($class, $prefix, strlen($prefix)) !== 0) {
+                return;
+            }
+
+            $relativeClass = substr($class, strlen($prefix));
+            $relativeFile = str_replace('\\', '/', $relativeClass) . '.php';
+
+            foreach ($sdkSourcePaths as $sdkSourcePath) {
+                $file = $sdkSourcePath . '/' . $relativeFile;
+                if (is_file($file)) {
+                    require_once $file;
+                    return;
+                }
+            }
+        }
+    );
 }
 
 

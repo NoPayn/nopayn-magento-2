@@ -5,7 +5,7 @@
 # Nopayn Payment plugin for Magento 2
 
 <p align="center">
-  <a href="#"><img src="https://img.shields.io/badge/version-1.0.0-blue.svg" alt="Version"></a>
+  <a href="#"><img src="https://img.shields.io/badge/version-1.1.0-blue.svg" alt="Version"></a>
   <a href="#"><img src="https://img.shields.io/badge/Magento-2.4.6+-brightgreen.svg" alt="Magento 2.4.6+"></a>
   <a href="#"><img src="https://img.shields.io/badge/PHP-8.2+-orange.svg" alt="PHP 8.2+"></a>
   <a href="#"><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License"></a>
@@ -40,7 +40,7 @@ The ideal online payment page for your webshop:
 
 ## Version
 
-Latest version: **1.0.1**
+Latest version: **1.1.0**
 
 ## Requirements
 
@@ -58,6 +58,7 @@ Latest version: **1.0.1**
 | Apple Pay | Seamless payments with Apple devices |
 | Swish | Popular mobile payment system in Sweden |
 | MobilePay | Mobile payment solution for Nordic countries |
+| Vipps/MobilePay | Combined Vipps and MobilePay wallet payment method |
 
 ## Installation
 

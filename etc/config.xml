@@ -8,7 +8,7 @@
     <default>
         <payment>
             <ginger_general>
-                <version>1.0.1</version>
+                <version>1.1.0</version>
                 <active>0</active>
                 <enabled>0</enabled>
                 <type>test</type>
@@ -71,6 +71,19 @@
                 <allowspecific>0</allowspecific>
                 <instructions/>
             </ginger_methods_mobilepay>
+            <ginger_methods_vippsmobilepay>
+                <active>1</active>
+                <model>GingerPay\Payment\Model\Methods\VippsMobilePay</model>
+                <title>Vipps/MobilePay</title>
+                <description>Your order %id% at %name%</description>
+                <order_status_pending>pending_payment</order_status_pending>
+                <generate_invoice>1</generate_invoice>
+                <order_status_processing>processing</order_status_processing>
+                <invoice_notify>1</invoice_notify>
+                <payment_action>order</payment_action>
+                <allowspecific>0</allowspecific>
+                <instructions/>
+            </ginger_methods_vippsmobilepay>
             <ginger_methods_swish>
                 <active>1</active>
                 <model>GingerPay\Payment\Model\Methods\Swish</model>

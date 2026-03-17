@@ -193,6 +193,7 @@ class ServiceOrderBuilder
             )
         ];
         if (
+            $platformCode === 'credit-card' &&
             $methodCode === 'ginger_methods_creditcard' &&
             $this->configRepository->isManualCaptureEnabled($methodCode)
         ) {
